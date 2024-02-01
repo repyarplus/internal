@@ -55,7 +55,7 @@ function logIn() {
           console.log("Login successful. Cookies set.");
 
           // Redirect after cookies are set
-          window.location.href = "https://jamil-test.glitch.me/index.html";
+          window.location.href = "https://repyarplus.github.io/internal/";
         } else {
           alert("Invalid email. Please try again.");
         }
