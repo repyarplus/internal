@@ -1,5 +1,5 @@
 if(document.cookie == '') {
-  window.location.href = "https://jamil-test.glitch.me/login.html";
+  window.location.href = "https://repyarplus.github.io/internal/login.html";
 }
 
 let idData = document.cookie.split(";");
