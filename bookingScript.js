@@ -41,7 +41,7 @@ function preFilledForm() {
 	document.getElementById("userId").value = userId;
 	document.getElementById("userName").value = userFName;
 	formMonth.value = currentTime.getMonth() + 1;
-	formDAT.value = currentTime.toDateString() + " " + currentTime.toTimeString().slice(0, 8);
+	formDAT.value = currentTime.toLocaleString();
 	
 formBN.value = '=VALUE(CONCATENATE(RIGHT(YEAR(INDIRECT("E" & ROW())),2), TEXT(MONTH(INDIRECT("E" & ROW())), "00"), TEXT(COUNTIF(INDIRECT("O1:O" & ROW()), INDIRECT("O" & ROW())), "00")))';
 }
@@ -49,7 +49,7 @@ formBN.value = '=VALUE(CONCATENATE(RIGHT(YEAR(INDIRECT("E" & ROW())),2), TEXT(MO
 function bookingPreview() {
 	let formData = new FormData(form);
 	document.getElementById("modalName").innerHTML = formData.get("name");
-	
+	let appointTime = formData.get("appointmentDateAndTime");
 	document.getElementById("modalDetails").innerHTML = "Phone Numbers: " + formData.get("phoneNumber")
 	+ ", " + formData.get("altNumber") + "<br>"
 	+ "Email: " + formData.get("email") + "<br>"
@@ -57,19 +57,20 @@ function bookingPreview() {
 	+ "Pincode: " + formData.get("pincode") + "<br>"
 	+ "Vehicle: " + formData.get("vehicle") + " " + formData.get("model") + "<br>"
 	+ "Issue: " + formData.get("issue") + "<br>"
-	+ "Appointment On " + formData.get("appointmentDateAndTime");
+	+ "Appointment On " + getTimeFormat(appointTime);
 	
 	document.getElementById("bookingModal").style.display = "block";	
 }
 
 function modalWA() {
     let formData = new FormData(form);
+    let appointTime = formData.get("appointmentDateAndTime");
     let message = `*Name:* ${formData.get("name")}
 *Phone Numbers:* ${formData.get("phoneNumber")}, ${formData.get("altNumber")}
 *Address:* ${formData.get("address")}
 *Vehicle:* ${formData.get("vehicle")} ${formData.get("model")}
 *Issue:* ${formData.get("issue")}
-*Appointment:* ${formData.get("appointmentDateAndTime")}`;
+*Appointment:* ${getTimeFormat(appointTime)}`;
 
     // Construct WhatsApp link
     let waLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
@@ -467,3 +468,24 @@ function getCurrentDateTime() {
     console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
 }
+
+// Appointment Time Formate
+function getTimeFormat(time) {
+let oldFormat = new Date(time)
+    // Format options for the desired output
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    };
+
+    // Convert to human-readable format
+    const formattedDateTime = oldFormat.toLocaleString(undefined, options);
+
+    console.log("Human Readable Date and Time:", formattedDateTime);
+  return formattedDateTime;
+}
+
