@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  </head>
+  <body>
+    <div class="container text-center">
+      <br />
+      <h1>Repyar Internal Login</h1>
+      <br />
+      <div id="logCard" style="display: none">
+        <input id="logCode" type="text" placeholder="Enter OTP" />
+        <button id="logIn" onclick="logIn()">Log in</button>
+      </div>
+      <div
+        id="getOTP"
+        class="card mx-auto"
+        style="display: block; width: 95%"
+      >
+        <div class="card-body">
+          <form name="submit-to-google-sheet">
+            <div class="mb-3">
+              <input
+                name="fullname"
+                type="text"
+                class="form-control"
+                placeholder="Fullname"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="email"
+                type="email"
+                id="inputEmail"
+                class="form-control"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="number"
+                type="text"
+                value=""
+                id="cod"
+                class="form-control"
+                placeholder="Number"
+                required
+                style="display: none"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Get OTP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

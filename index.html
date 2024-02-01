@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookings</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- start new booking form -->
+    <button id="newBooking" title="New Booking" onclick="newBooking()">
+      +
+    </button>
+    <div class="container text-center">
+      <div
+        id="newBookCard"
+        class="card mx-auto"
+        style="display: none; width: 95%"
+      >
+        <h3>Create New Booking</h3>
+        <div class="card-body">
+          <form name="Service-Bookings">
+            <input type="hidden" name="formId" value="Service-Bookings" />
+            <input
+              type="hidden"
+              id="bookingNumber"
+              name="bookingNumber"
+              value=""
+            />
+            <input type="hidden" id="userName" name="userName" value="" />
+            <input type="hidden" id="userId" name="userId" value="" />
+            <input type="hidden" id="dateAndTime" name="dateAndTime" value="" />
+            <input type="hidden" id="month" name="month" value="" />
+
+            <div class="mb-3">
+              <input
+                name="phoneNumber"
+                type="tel"
+                pattern="[0-9]{10}"
+                class="form-control"
+                placeholder="Phone Number"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="email"
+                type="email"
+                class="form-control"
+                placeholder="Email"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="altNumber"
+                type="tel"
+                pattern="[0-9]{10}"
+                class="form-control"
+                placeholder="Alt Number"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="address"
+                type="text"
+                class="form-control"
+                placeholder="Address"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                name="pincode"
+                type="number"
+                class="form-control"
+                placeholder="Pincode"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                name="issue"
+                type="text"
+                class="form-control"
+                placeholder="Issue"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                name="vehicle"
+                type="text"
+                class="form-control"
+                placeholder="Vehicle Company"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                name="model"
+                type="text"
+                class="form-control"
+                placeholder="Vehicle Model"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                name="appointmentDateAndTime"
+                type="datetime-local"
+                class="form-control"
+                id="appointmentDateAndTime"
+                placeholder="Appointment Time"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- New Booking Form Ends -->
+
+    <!-- new booking preview -->
+    <div id="bookingModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <h2 id="modalName"></h2>
+        <p id="modalDetails"></p>
+      </div>
+      <div class="modal-button" style="display: flex;">
+        <button onclick="modalWA()">WhatsApp</button>
+        <button onclick="modalClose()">Close</button>
+      </div>
+    </div>
+    <!-- End of booking form -->
+
+    <div id="cards-container"></div>
+
+    <!-- Booking Status Form-->
+    <div class="container text-center">
+      <div
+        class="card mx-auto"
+        id="bookingStatus"
+        style="display: none; width: 18rem"
+      >
+        <h3>Job Update</h3>
+        <div class="card-body">
+          <form name="Service-Bookings" id="bookingStatusForm">
+            <input type="hidden" name="formId" value="Booking-Status" />
+            <input type="hidden" name="bookingNumber" value="" />
+            <input type="hidden" name="userName" value="" />
+            <input type="hidden" name="userId" value="" />
+            <input type="hidden" name="dateAndTime" value="" />
+            <input type="hidden" name="location" value="" />
+            <input type="hidden" name="remarks" value="" />
+            <input type="hidden" name="status" value="" />
+
+            <div>
+              <input
+                name="vehicleNumber"
+                type="text"
+                class="form-control"
+                placeholder="Vehicle Number"
+              />
+            </div>
+            <div>
+              <input
+                name="kilometer"
+                type="number"
+                class="form-control"
+                placeholder="Kilometer"
+              />
+            </div>
+            <div>
+              <input
+                name="charge"
+                type="number"
+                class="form-control"
+                placeholder="Charge"
+              />
+            </div>
+            <div>
+              <input
+                name="services"
+                type="text"
+                class="form-control"
+                placeholder="Services"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="estimateComplete">Estimate Time</label>
+              <input
+                name="estimateComplete"
+                id="estimateComplete"
+                type="datetime-local"
+                class="form-control"
+                placeholder="Estimate Time"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="bookingScript.js"></script>
+  </body>
+</html>
