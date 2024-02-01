@@ -212,11 +212,12 @@ function bookingStatus() {
         }
         // mechanics
         let mechanics = entry["Mechanics"].split("#");
+        let uniqueMechanics = removeDuplicates(mechanics);
         let displayMechanics = "";
-        mechanics.forEach(function (item) {
+        uniqueMechanics.forEach(function (item) {
           displayMechanics += `${item} `;
         });
-        sCard.children[2].children[14].innerHTML = "<hr>" + displayMechanics;
+        sCard.children[2].children[14].innerHTML = "<hr>" + "<strong>Mechanics: </strong>" + displayMechanics;
 
         //Job Updates
         let remarks = entry["Remarks"].split("#");
@@ -501,4 +502,9 @@ function getTimeFormat(time) {
 
   console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
+}
+
+// remove duplicates array
+function removeDuplicates(array) {
+  return Array.from(new Set(array));
 }
