@@ -6,37 +6,36 @@ let userId = idData[0].split("=")[1];
 let userFName = idData[1].split("=")[1];
 let userLName = idData[2].split("=")[1];
 let userType = idData[3].split("=")[1];
-let newBookCard = document.getElementById("newBookCard");
-let newBookIcon = document.getElementById("newBooking");
+let newBookCard = document.getElementById("newBookCard"); //the new book card Div
+let newBookIcon = document.getElementById("newBooking"); // the + icon
 let bookingStatusDiv = document.getElementById("bookingStatus"); //booking status form
-let bookingsDiv = document.getElementById("cards-container");
+let bookingsDiv = document.getElementById("cards-container"); // the bookings card div
 
 //New Booking Form Start
 
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzAK0ox3FsbPHR3lmtipjsnanUGnlKEqOkrXUNe6Vl4R4Ui3w0q0zuQaBRqHA1h7Kb74g/exec";
+const scriptURL ="https://script.google.com/macros/s/AKfycbzAK0ox3FsbPHR3lmtipjsnanUGnlKEqOkrXUNe6Vl4R4Ui3w0q0zuQaBRqHA1h7Kb74g/exec";
 const form = document.forms["Service-Bookings"];
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  fetch(scriptURL, { method: "POST", body: new FormData(form) })
-    .then((response) => {
-      console.log("Success!", response);
+	e.preventDefault();
+	fetch(scriptURL, { method: "POST", body: new FormData(form) })
+	.then((response) => {
+		console.log("Success!", response);
       // Additional function call after the fetch is successful
-      newBookCard.style.display = "none";
-      bookingPreview();
+		newBookCard.style.display = "none";
+		bookingPreview();
     })
-    .catch((error) => {
-      console.error("Error!", error.message);
+	.catch((error) => {
+		console.error("Error!", error.message);
       // Additional function call if there's an error with the fetch
     });
 });
 
 function preFilledForm() {
-  let formBN = document.getElementById("bookingNumber");
-  let formDAT = document.getElementById("dateAndTime");
-  let formMonth = document.getElementById("month");
-  let currentTime = new Date();
+	let formBN = document.getElementById("bookingNumber");
+	let formDAT = document.getElementById("dateAndTime");
+	let formMonth = document.getElementById("month");
+	let currentTime = new Date();
 
   document.getElementById("userId").value = userId;
   document.getElementById("userName").value = userFName;
@@ -115,9 +114,7 @@ function newBooking() {
 
 //Incomplete Booking Starts
 
-fetch(
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRilpgg9SMxdf64sZqm5n2bd8czDHseC2bQAkvfaHRw46wX8hC00Ys_ihBNvNZC8-_pH9oaCmr5cKMk/pub?gid=178526086&single=true&output=csv"
-)
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRilpgg9SMxdf64sZqm5n2bd8czDHseC2bQAkvfaHRw46wX8hC00Ys_ihBNvNZC8-_pH9oaCmr5cKMk/pub?gid=178526086&single=true&output=csv")
   .then((response) => response.text())
   .then((csv) => {
     // Convert CSV to array of objects
@@ -176,8 +173,7 @@ fetch(
   });
 
 function bookingStatus() {
-  fetch(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRilpgg9SMxdf64sZqm5n2bd8czDHseC2bQAkvfaHRw46wX8hC00Ys_ihBNvNZC8-_pH9oaCmr5cKMk/pub?gid=923930940&single=true&output=csv"
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRilpgg9SMxdf64sZqm5n2bd8czDHseC2bQAkvfaHRw46wX8hC00Ys_ihBNvNZC8-_pH9oaCmr5cKMk/pub?gid=923930940&single=true&output=csv"
   )
     .then((response) => response.text())
     .then((sCsv) => {
@@ -481,9 +477,7 @@ function getCurrentDateTime() {
   };
 
   // Convert to human-readable format
-  const formattedDateTime = currentDateTime
-    .toLocaleString(undefined, options)
-    .replace(",", "-");
+  const formattedDateTime = currentDateTime.toLocaleString(undefined, options).replace(",", "-");
 
   console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
@@ -503,9 +497,7 @@ function getTimeFormat(time) {
   };
 
   // Convert to human-readable format
-  const formattedDateTime = oldFormat
-    .toLocaleString(undefined, options)
-    .replace(",", "-");
+  const formattedDateTime = oldFormat.toLocaleString(undefined, options).replace(",", "-");
 
   console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
