@@ -467,43 +467,48 @@ statusForm.addEventListener("submit", (e) => {
 function getCurrentDateTime() {
   const currentDateTime = new Date();
 
-  // Format options for the desired output
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  };
+  // Extract date components
+  const year = currentDateTime.getFullYear();
+  const month = currentDateTime.toLocaleString('default', { month: 'long' });
+  const day = currentDateTime.getDate();
 
-  // Convert to human-readable format
-  const formattedDateTime = currentDateTime.toLocaleString(undefined, options).replace(",", "-");
+  // Extract time components
+  let hour = currentDateTime.getHours();
+  const minute = currentDateTime.getMinutes();
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12;
+  hour = hour ? hour : 12; // Convert midnight (0 hours) to 12
+
+  // Construct the formatted date and time string
+  const formattedDateTime = `${day} ${month} ${year} at ${hour}:${minute < 10 ? '0' + minute : minute} ${ampm}`;
 
   console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
 }
+
 
 // Appointment Time Formate
-function getTimeFormat(time) {
-  let oldFormat = new Date(time);
-  // Format options for the desired output
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  };
+function getTimeFormat(item) {
+  const oldTime = new Date(item);
 
-  // Convert to human-readable format
-  const formattedDateTime = oldFormat.toLocaleString(undefined, options).replace(",", "-");
+  // Extract date components
+  const year = oldTime.getFullYear();
+  const month = oldTime.toLocaleString('default', { month: 'long' });
+  const day = oldTime.getDate();
+
+  // Extract time components
+  let hour = oldTime.getHours();
+  const minute = oldTime.getMinutes();
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12;
+  hour = hour ? hour : 12; // Convert midnight (0 hours) to 12
+
+  // Construct the formatted date and time string
+  const formattedDateTime = `${day} ${month} ${year} at ${hour}:${minute < 10 ? '0' + minute : minute} ${ampm}`;
 
   console.log("Human Readable Date and Time:", formattedDateTime);
   return formattedDateTime;
 }
-
 // remove duplicates array
 function removeDuplicates(array) {
   return Array.from(new Set(array));
